@@ -2,6 +2,10 @@
 
 A Gradle project showing how to integration-test a web application with Docker and docker-compose.
 
+## Usage
+
+    ./gradlew build
+
 ## Links
 
 * [Getting Started With Gradle: Integration Testing](https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/)
