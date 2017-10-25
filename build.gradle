@@ -1,0 +1,51 @@
+plugins {
+    id "com.github.maiflai.scalatest" version "0.18"
+}
+
+apply plugin: 'scala'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+sourceSets {
+    integrationTest {
+        scala {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/it/scala')
+        }
+        resources.srcDir file('src/it/resources')
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.4'
+    compile 'org.apache.logging.log4j:log4j-api:2.8.2'
+    runtime 'org.apache.logging.log4j:log4j-core:2.8.2'
+
+    testCompile 'org.scalatest:scalatest_2.12:3.0.4'
+    testRuntime 'org.pegdown:pegdown:1.4.2'
+
+    integrationTestCompile 'org.scalaj:scalaj-http_2.11:2.3.0'
+}
