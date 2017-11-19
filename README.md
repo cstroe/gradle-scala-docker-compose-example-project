@@ -7,7 +7,7 @@ A Gradle project showing how to integration-test a web application with Docker a
     ./gradlew build
 
 ## Links
-
+* [https://github.com/cstroe/maven-docker-compose-example-project](maven-docker-compose-example-project) - The same thing this project does but with Maven.
 * [Getting Started With Gradle: Integration Testing](https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/)
 * [Gradle ScalaTest plugin](https://github.com/maiflai/gradle-scalatest)
 * [Gradle ShadowJar plugin](https://github.com/johnrengelman/shadow)
