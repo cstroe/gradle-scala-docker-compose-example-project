@@ -1,6 +1,7 @@
 plugins {
     id "com.github.maiflai.scalatest" version "0.18"
-    id 'com.avast.gradle.docker-compose' version "0.6.0"
+    // https://github.com/avast/gradle-docker-compose-plugin
+    id 'com.avast.gradle.docker-compose' version "0.8.12"
     id 'com.github.johnrengelman.shadow' version '2.0.1'
 }
 
@@ -51,6 +52,7 @@ task integrationTest(type: Test) {
 composeUp.dependsOn shadowJar
 integrationTest.dependsOn composeUp
 composeUp.mustRunAfter integrationTestClasses
+integrationTest.finalizedBy composeDown
 check.dependsOn integrationTest
 
 tasks.withType(Test) {
@@ -82,3 +84,4 @@ dependencies {
 //        }
 //    }
 //}
+
